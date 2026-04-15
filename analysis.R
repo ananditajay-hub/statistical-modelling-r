@@ -1,6 +1,7 @@
 # Statistical Modelling of Behavioural Data
 # Author: Anandita Das
 # Methods: EDA, Linear Regression, Logistic Regression
+# Objective: To analyse factors influencing tipping behaviour
 
 # Load dataset
 tips <- read.csv("https://raw.githubusercontent.com/mwaskom/seaborn-data/master/tips.csv")
@@ -29,4 +30,15 @@ model2 <- glm(high_tip ~ total_bill + size + smoker,
               data = tips,
               family = "binomial")
 summary(model2)
+# Correlation
+cor(tips$total_bill, tips$tip)
 
+# Boxplot
+boxplot(tip ~ smoker, data = tips,
+        main = "Tip Distribution by Smoking Status")
+
+# Model diagnostics
+plot(model1)
+# Key Insight:
+# Total bill is a strong predictor of tip amount (p < 0.001),
+# while smoking status and gender are not statistically significant.
